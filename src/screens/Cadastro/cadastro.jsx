@@ -47,6 +47,37 @@ function Cadastro() {
         return true;
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Valida o CPF antes de prosseguir com o cadastro
+        if (!validarCPF(formData.cpf)) {
+            setMensagem('CPF inválido.');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/pessoas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setMensagem('Cadastro realizado com sucesso!');
+                setFormData({ nome: '', cpf: '', senha: '', endereco: '', numeroEndereco: '' });
+            } else {
+                const error = await response.json();
+                setMensagem(error.error || 'Erro ao realizar o cadastro.');
+            }
+        } catch (error) {
+            console.error('Erro na conexão:', error);
+            setMensagem('Erro de conexão com o servidor.');
+        }
+    };
+
+    
+
 
 }
 
