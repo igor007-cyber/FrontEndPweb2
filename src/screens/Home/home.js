@@ -23,7 +23,7 @@ function Home() {
         <div className="container">
             <div className="header">
                 <div className="Logo1">
-                  
+                    <img className="logo1" src="../../src/assets/logo2.png" alt="logo" />
                 </div>
                 <div className={`menu`}>
                     <nav className="menu-nav">
@@ -53,7 +53,7 @@ function Home() {
 
                 <div className='video-container'>
                     <iframe 
-                       
+                        src="../../src/assets/modelos/CaioSports.mp4" 
                         allow="autoplay; encrypted-media; picture-in-picture" 
                         allowfullscreen
                         frameborder>
