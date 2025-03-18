@@ -56,3 +56,59 @@ form label {
     margin-bottom: 15px;
     font-size: 14px;
 }
+
+
+form input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Estilo para o botão de voltar */
+button[type="button"] {
+    background-color: #444; /* Cor de fundo para o botão de voltar */
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #333; /* Cor ao passar o mouse no botão de voltar */
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo-container {
+        max-width: 300px;
+        margin-left: 100px;
+    }
+
+    .formulario {
+        width: 90%;
+    }
+}
