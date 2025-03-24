@@ -12,7 +12,7 @@ function Login() {
     const [mensagem, setMensagem] = useState('');
     const navigate = useNavigate();
 
-    // Função para atualizar os dados do formulário
+    //Função para atualizar os dados do formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
