@@ -10,3 +10,7 @@ export const login = async (email, password) => {
         throw new Error('Falha na autenticação')
     }
 }
+
+export const logout = () => {
+    localStorage.removeItem('token')
+}
