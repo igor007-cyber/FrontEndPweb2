@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './estilo.css'; // Importação do CSS
-import logo from '../../assets/logo2.png'; // Importação da imagem
+import logo from '../../assets/logo2.png';
+import {login} from "../../api/auth"; // Importação da imagem
 
-function Login() {
+function Login({ onLogin }) {
     const [formData, setFormData] = useState({
         email: '',
         senha: '',
@@ -21,22 +22,9 @@ function Login() {
     // Função para lidar com o login
     const handleLogin = async (e) => {
         e.preventDefault();
-
         try {
-            const response = await fetch('http://localhost:3001/api/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                const user = await response.json(); // Supondo que a API retorna os dados do usuário
-                localStorage.setItem('user', JSON.stringify(user)); // Armazena dados do usuário
-                setMensagem('Login realizado com sucesso!');
-                navigate('/'); // Redireciona para a Home
-            } else {
-                setMensagem('Login ou senha incorretos.');
-            }
+            await login(formData.email, formData.senha);
+            onLogin();
         } catch (error) {
             console.error('Erro de conexão:', error);
             setMensagem('Erro de conexão com o servidor.');

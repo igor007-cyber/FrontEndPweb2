@@ -12,8 +12,8 @@ import pessoa from '../../assets/pessoa.png';
 import chamada from '../../assets/modelos/chamada.png';
 import seta from '../../assets/modelos/seta.png';
 
-function Home() {
-    const [user, setUser] = useState(null);
+function Home({ setAuthenticated, isAuthenticated }) {
+    const [user, setUser] = useState("Nome do usuário");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Home() {
 
     const handleLogout = () => {
         localStorage.removeItem('user');
-        setUser(null);
+        setAuthenticated(false);
         navigate('/login');
     };
 
@@ -33,7 +33,7 @@ function Home() {
         <div className="container">
             <div className="header">
                 <div className="Logo1">
-                    <img className="logo1" src={logo} alt="Logo Caio Sports" />
+                    <img className="logo1" src={logo} alt="Logo Caio Sports"/>
                 </div>
                 <div className="menu">
                     <nav className="menu-nav">
@@ -46,9 +46,9 @@ function Home() {
                     </nav>
                 </div>
                 <div className="icon">
-                    {user ? (
+                    {isAuthenticated ? (
                         <>
-                            <span className="login">{user.nome}</span>
+                            <span className="login">{user}</span>
                             <button className="logout" onClick={handleLogout}>Sair</button>
                         </>
                     ) : (

@@ -3,15 +3,23 @@ import { Analytics } from './Analytics';
 import { Orders } from './Orders';
 import { ProductManager } from './ProductManager';
 import { BarChart3, ShoppingBag, Package } from 'lucide-react';
+import {useNavigate} from "react-router-dom";
 
-export const Dashboard = () => {
+export const Dashboard = ({ setAuthenticated }) => {
   const [activeTab, setActiveTab] = useState('analytics'); // Removido o tipo 'Tab'
+  const navigate = useNavigate();
 
   const tabs = [
     { id: 'analytics', label: 'Análise', icon: BarChart3 },
     { id: 'orders', label: 'Pedidos', icon: ShoppingBag },
     { id: 'products', label: 'Produtos', icon: Package },
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuthenticated(false);
+    navigate('/login');
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -44,6 +52,9 @@ export const Dashboard = () => {
           {activeTab === 'analytics' && <Analytics />}
           {activeTab === 'orders' && <Orders />}
           {activeTab === 'products' && <ProductManager />}
+          <button  onClick={handleLogout}>
+            Sair
+          </button>
         </div>
       </div>
     </div>

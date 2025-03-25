@@ -1,24 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './screens/Home/home';
-import Login from './screens/Login/login';
-import Cadastro from './screens/Cadastro/cadastro';
-import Produto from './screens/Produtos/produto';
+import React, {useState} from 'react';
 import './index.css';
-import Dashboard from './screens/Dashboard';
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/produto" element={<Produto />} />\
-                <Route path="/Dashboard" element={<Dashboard />} />
-            </Routes>
-        </Router>
-    );
+    const [isAuthenticated, setAuthenticated] = useState(!!localStorage.getItem("token"));
+
+    return <AppRoutes isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />;
 }
 
-export default App
+export default App;
