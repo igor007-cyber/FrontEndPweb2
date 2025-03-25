@@ -1,6 +1,16 @@
-import './estilo.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './estilo.css';
+
+// Importação das imagens
+import logo from '../../assets/logo2.png';
+import roupa from '../../assets/modelos/roupa.jpeg';
+import sapato from '../../assets/modelos/sapato.jpg';
+import acessorio from '../../assets/modelos/acessorio.jpeg';
+import instagramIcon from '../../assets/modelos/instagram.png';
+import pessoa from '../../assets/pessoa.png';
+import chamada from '../../assets/modelos/chamada.png';
+import seta from '../../assets/modelos/seta.png';
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -23,15 +33,15 @@ function Home() {
         <div className="container">
             <div className="header">
                 <div className="Logo1">
-                    <img className="logo1" src="../../src/assets/logo2.png" alt="logo" />
+                    <img className="logo1" src={logo} alt="Logo Caio Sports" />
                 </div>
-                <div className={`menu`}>
+                <div className="menu">
                     <nav className="menu-nav">
                         <ul>
-                            <li><a className="nave" href="#">Home</a></li>                           
-                            <li><a className="nave" href="#">Produtos</a></li>
+                            <li><Link to="/" className="nave">Home</Link></li>
+                            <li><Link to="/produto" className="nave">Produto</Link></li>
                             <li><Link to="/cadastro" className="nave">Cadastrar</Link></li>
-                            <li><a className="nave" href="#">Sobre</a></li>
+                            <li><Link to="/Dashboard" className="nave">Dashboard</Link></li>
                         </ul>
                     </nav>
                 </div>
@@ -48,62 +58,57 @@ function Home() {
             </div>
 
             <div className="corpo">
-            <div className="corpo">
                 <div className="modelo">
+                    <div className="video-container">
+                        <video
+                            src="../../../public/CaioSports.mp4"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                            title="Vídeo de modelos Caio Sports"
+                        ></video>
+                    </div>
+                    <h3 className="texto">Temos aqui modelos de vários tipos</h3>
 
-                <div className='video-container'>
-                    <iframe 
-                        src="../../src/assets/modelos/CaioSports.mp4" 
-                        allow="autoplay; encrypted-media; picture-in-picture" 
-                        allowfullscreen
-                        frameborder>
-                    </iframe>
-                </div>
-                     <h3 className='tesxto'>Temos aqui modelos de varios tipos</h3> 
-
-                    <div className='img-produtos'>
+                    <div className="img-produtos">
                         <div>
-                            <img src="../../src/assets/modelos/roupa.jpeg" alt="roupa" />
+                            <img src={roupa} alt="Roupas" />
                             <p>Roupas</p>
                         </div>
-                        
                         <div>
-                            <img src="../../src/assets/modelos/sapato.jpg" alt="Sapatos" />
+                            <img src={sapato} alt="Sapatos" />
                             <p>Sapatos</p>
                         </div>
-
                         <div>
-                            <img src="../../src/assets/modelos/acessorio.jpeg" alt="Acessórios" />
+                            <img src={acessorio} alt="Acessórios" />
                             <p>Acessórios</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="mostruario-instagram">
-                    <a className='instagram' href="https://www.instagram.com/caio_sports2023/">
-                        <img className='imgInstagram' src="../../src/assets/modelos/instagram.png" alt="instagram" />
+                    <a className="instagram" href="https://www.instagram.com/caio_sports2023/" target="_blank" rel="noopener noreferrer">
+                        <img className="imgInstagram" src={instagramIcon} alt="Instagram Caio Sports" />
                     </a>
                 </div>
 
                 <div className="Compra">
-                    <div className='pessoa'>
-                        <img className='pessoa-modelo' src="../../src/assets/pessoa.png" alt="pessoa" />
+                    <div className="pessoa">
+                        <img className="pessoa-modelo" src={pessoa} alt="Modelo de pessoa" />
                     </div>
                     <div>
                         <p>
-                            <img className='apresentacao' src="../../src/assets/modelos/chamada.png" alt="nossos produtos" />
+                            <img className="apresentacao" src={chamada} alt="Nossos produtos" />
                         </p>
-                        <a href="#" className='link-img-modelo'>
-                            <img src="../../src/assets/modelos/seta.png" alt="link dos produtos" />
-                        </a>
+                        <Link to="/produtos" className="link-img-modelo">
+                            <img src={seta} alt="Ver produtos" />
+                        </Link>
                     </div>
                 </div>
-            </div>
             </div>
 
             <div className="footer">
                 <div>
-                    <img src="../../src/assets/logo2.png" alt="logo" />
+                    <img src={logo} alt="Logo Caio Sports" />
                     <p>Caio Sports 2023</p>
                 </div>
             </div>
