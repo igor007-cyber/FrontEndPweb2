@@ -77,7 +77,7 @@ form input {
     flex: 1;
     padding: 10px;
     background-color: rgba(31, 120, 31, 0.726); /* Cor verde padrão */
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     font-size: 16px;
