@@ -40,8 +40,7 @@ function Home({ setAuthenticated, isAuthenticated }) {
                         <ul>
                             <li><Link to="/" className="nave">Home</Link></li>
                             <li><Link to="/produto" className="nave">Produto</Link></li>
-                            <li><Link to="/cadastro" className="nave">Cadastrar</Link></li>
-                            <li><Link to="/Dashboard" className="nave">Dashboard</Link></li>
+                            <li><Link to="/cadastro" className="nave">Cadastrar</Link></li> 
                         </ul>
                     </nav>
                 </div>
