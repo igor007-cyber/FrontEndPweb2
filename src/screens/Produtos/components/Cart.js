@@ -29,7 +29,7 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
             <ShoppingBag />
             Carrinho
           </h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 bg-white mr-auto justify-items-center">
             <X size={24} />
           </button>
         </div>
@@ -45,19 +45,19 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
                   <div key={item.id} className="flex items-center gap-4 border-b pb-4">
                     <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded" />
                     <div className="flex-1">
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h3 className="font-semibold whitespace-nowrap">{item.name}</h3>
                       <p className="text-gray-600">R$ {item.price.toFixed(2)}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => onUpdateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                          className="px-2 py-1 bg-gray-100 rounded"
+                          className="px-2 py-1 bg-blue-600 rounded"
                         >
                           -
                         </button>
                         <span>{item.quantity}</span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                          className="px-2 py-1 bg-gray-100 rounded"
+                          className="px-2 py-1 bg-blue-600 rounded "
                           disabled={product && item.quantity >= product.stock}
                         >
                           +
@@ -71,9 +71,9 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
                     </div>
                     <button
                       onClick={() => onRemoveFromCart(item.id)}
-                      className="text-red-500 hover:text-red-700"
+                      className="text-black bg-white hover:text-red-700 justify-items-center"
                     >
-                      <X size={20} />
+                      <X size={20}/>
                     </button>
                   </div>
                 );

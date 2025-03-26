@@ -32,7 +32,7 @@ export const Analytics = () => {
               className={`px-4 py-2 rounded-lg ${
                 period === p
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                  : 'bg-blue-600 hover:bg-gray-200'
               }`}
             >
               {p === 'daily' && 'Diário'}

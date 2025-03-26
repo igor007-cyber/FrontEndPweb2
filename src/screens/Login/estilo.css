@@ -78,7 +78,7 @@ form input {
     flex: 1;
     padding: 10px;
     background-color: rgba(31, 120, 31, 0.726); /* Cor verde padrão */
-    color: black;
+    color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -96,6 +96,15 @@ form input {
     justify-content: space-between;
     gap: 10px;
     margin-top: 15px;
+}
+
+.botao[type="button"] {
+    background-color: #1f601f;
+    margin-top: 10px;
+}
+
+.botao[type="button"]:hover{
+    background-color: rgb(14, 71, 14); 
 }
 
 p {

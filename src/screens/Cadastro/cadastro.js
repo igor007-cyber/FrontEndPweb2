@@ -1,5 +1,6 @@
 import './estilo.css';
 import { useState } from 'react';
+import logo from '../../assets/logo2.png';
 
 function Cadastro() {
     const [formData, setFormData] = useState({
@@ -80,7 +81,7 @@ function Cadastro() {
         <>
             <div className="container">
                 <div className="logo-container">
-                    <img className="logo" src="../../src/assets/logo2.png" alt="logo" />
+                    <img className="logo" src={logo } alt="logo" />
                 </div>
 
                 <div className="formulario">

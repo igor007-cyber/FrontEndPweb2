@@ -82,7 +82,7 @@ export const ProductManager = () => {
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-gray-200"
           >
             <Upload size={20} />
             Importar CSV
@@ -110,7 +110,7 @@ export const ProductManager = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Estoque
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">
                 Categoria
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -207,13 +207,13 @@ export const ProductManager = () => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEdit(product)}
-                          className="p-2 text-blue-600 hover:text-blue-800"
+                          className="p-2 text-white hover:text-blue-800 bg-blue-600 justify-items-center"
                         >
                           <Edit size={20} />
                         </button>
                         <button
                           onClick={() => handleDelete(product.id)}
-                          className="p-2 text-red-600 hover:text-red-800"
+                          className="p-2 text-white hover:text-red-800 bg-blue-600 justify-items-center"
                         >
                           <Trash2 size={20} />
                         </button>

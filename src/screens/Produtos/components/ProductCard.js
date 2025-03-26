@@ -18,11 +18,11 @@ const ProductCard = ({ product, onAddToCart }) => {
           </span>
         </div>
         <div className="mt-4 flex justify-between items-center">
-          <span className="text-xl font-bold">R$ {product.price.toFixed(2)}</span>
+          <span className="text-xl font-bold whitespace-nowrap px-2">R$ {product.price.toFixed(2)}</span>
           <button
             onClick={() => onAddToCart(product)}
             disabled={product.stock === 0}
-            className={`px-4 py-2 rounded-full flex items-center gap-2 transition-colors ${
+            className={`rounded-full flex items-center gap-2 transition-colors justify-center ${
               product.stock === 0
                 ? 'bg-gray-300 cursor-not-allowed text-gray-500'
                 : 'bg-blue-600 text-white hover:bg-blue-700'

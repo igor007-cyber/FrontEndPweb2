@@ -52,7 +52,7 @@ export const Dashboard = ({ setAuthenticated }) => {
           {activeTab === 'analytics' && <Analytics />}
           {activeTab === 'orders' && <Orders />}
           {activeTab === 'products' && <ProductManager />}
-          <button  onClick={handleLogout}>
+          <button  onClick={handleLogout} className='bg-blue-600'>
             Sair
           </button>
         </div>
