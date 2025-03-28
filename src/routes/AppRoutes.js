@@ -1,4 +1,4 @@
-import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Home from "../screens/Home/home";
 import Login from "../screens/Login/login";
 import Cadastro from "../screens/Cadastro/cadastro";
@@ -20,28 +20,6 @@ const AppRoutes = ({ isAuthenticated, setAuthenticated }) => {
         setAuthenticated(true);
     }
 
-    return(
-        <BrowserRouter>
-            <Routes>
 
-                <Route path="/login"
-                       element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to={"/"}/> }
-                />
-
-                <Route path="/"
-                       element={
-                            userType==="admin" ?
-                                (<Dashboard setAuthenticated={setAuthenticated} />) :
-                                (<Home setAuthenticated={setAuthenticated} isAuthenticated={isAuthenticated} />)
-                } />
-
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/produto" element={<Produto />} />
-
-                <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/login"}/> } />
-            </Routes>
-        </BrowserRouter>
-    );
-}
 
 export default AppRoutes;
