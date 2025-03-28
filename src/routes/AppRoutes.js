@@ -20,6 +20,28 @@ const AppRoutes = ({ isAuthenticated, setAuthenticated }) => {
         setAuthenticated(true);
     }
 
+    return(
+        <BrowserRouter>
+            <Routes>
 
+                <Route path="/login"
+                       element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to={"/"}/> }
+                />
+
+                <Route path="/"
+                       element={
+                            userType==="admin" ?
+                                (<Dashboard setAuthenticated={setAuthenticated} />) :
+                                (<Home setAuthenticated={setAuthenticated} isAuthenticated={isAuthenticated} />)
+                } />
+
+                <Route path="/cadastro" element={<Cadastro />} />
+                <Route path="/produto" element={<Produto isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />} />
+
+                <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/login"}/> } />
+            </Routes>
+        </BrowserRouter>
+    );
+}
 
 export default AppRoutes;
