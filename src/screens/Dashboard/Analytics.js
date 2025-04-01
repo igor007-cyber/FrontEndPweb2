@@ -43,3 +43,29 @@ export const Analytics = () => {
           ))}
         </div>
       </div>
+
+
+
+      <div className="bg-white p-6 rounded-lg shadow-lg" style={{ height: '400px' }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={getData()}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="sales"
+              stroke="#2563eb"
+              strokeWidth={2}
+              dot={{ r: 4 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default Analytics
