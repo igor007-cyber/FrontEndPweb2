@@ -114,4 +114,51 @@ function Home({ setAuthenticated, isAuthenticated }) {
                         />
                     </a>
                 </div>
+                  {/* Purchase Section */}
+                  <div className="flex items-center justify-center gap-5 my-5 bg-white">
+                    <div className="flex-shrink-0">
+                        <img src={pessoa} alt="Modelo de pessoa" className="w-[450px] h-auto" />
+                    </div>
+                    <div className="flex flex-col items-center gap-4">
+                        <p>
+                            <img src={chamada} alt="Nossos produtos" className="apresentacao" />
+                        </p>
+                        <Link to="/produtos" className="relative inline-block">
+                            <img 
+                                src={seta} 
+                                alt="Ver produtos" 
+                                className="w-[150px] h-auto relative top-[-100px] hover:scale-125 transition-transform duration-300"
+                                style={{
+                                    animation: 'move-up-down 2s infinite'
+                                }}
+                            />
+                        </Link>
+                    </div>
+                </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="w-full bg-black text-white flex flex-col justify-center items-center py-5 gap-5">
+                <img src={logo} alt="Logo Caio Sports" className="h-[200px] w-auto" />
+                <p className="text-base m-0 text-center font-bold">Caio Sports 2023</p>
+            </footer>
+
+            {/* Animation Keyframes (in style tag since Tailwind doesn't support keyframes directly) */}
+            <style>
+                {`
+                @keyframes move-up-down {
+                    0%, 100% {
+                        transform: translateY(0);
+                    }
+                    50% {
+                        transform: translateY(-60px);
+                    }
+                }
+                `}
+            </style>
+        </div>
+    );
+}
+
+export default Home;
 
