@@ -248,3 +248,122 @@ export const ProductManager = () => {
                         />
                         {product.nome}
                       </div>
+
+                      
+
+ 
+
+
+ 
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                      {product.descricao || 'Sem descrição'}
+                    </td>
+                    <td className="px-6 py-4">
+                      R$ {product.preco.toFixed(2)}
+                    </td>
+                    <td className="px-6 py-4">
+                      {product.qtd_estoque}
+                    </td>
+                    <td className="px-6 py-4">
+                      {product.categoria}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleEdit(product)}
+                          className="p-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                        >
+                          <Edit size={20} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(product.id)}
+                          className="p-2 text-white bg-red-600 rounded hover:bg-red-700"
+                        >
+                          <Trash2 size={20} />
+                        </button>
+                      </div>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+            {editingId === 'new' && (
+              <tr>
+                <td className="px-6 py-4">
+                  <input
+                    type="text"
+                    value={editForm.nome || ''}
+                    onChange={(e) => setEditForm({ ...editForm, nome: e.target.value })}
+                    className="w-full p-2 border rounded"
+                  />
+                </td>
+                <td className="px-6 py-4">
+                  <input
+                    type="text"
+                    value={editForm.descricao || ''}
+                    onChange={(e) => setEditForm({ ...editForm, descricao: e.target.value })}
+                    className="w-full p-2 border rounded"
+                    placeholder="Descrição do produto"
+                  />
+                </td>
+                <td className="px-6 py-4">
+                  <input
+                    type="number"
+                    value={editForm.preco || ''}
+                    onChange={(e) => setEditForm({ ...editForm, preco: parseFloat(e.target.value) })}
+                    className="w-full p-2 border rounded"
+                  />
+                </td>
+                <td className="px-6 py-4">
+                  <input
+                    type="number"
+                    value={editForm.qtd_estoque || ''}
+                    onChange={(e) => setEditForm({ ...editForm, qtd_estoque: parseInt(e.target.value, 10) })}
+                    className="w-full p-2 border rounded"
+                  />
+                </td>
+                <td className="px-6 py-4">
+                  <select
+                    value={editForm.categoria || ''}
+                    onChange={(e) => setEditForm({ ...editForm, categoria: e.target.value })}
+                    className="w-full p-2 border rounded"
+                  >
+                    <option value="clothes">Roupas</option>
+                    <option value="accessories">Acessórios</option>
+                    <option value="shoes">Sapatos</option>
+                    <option value="hats">Chapéus</option>
+                    <option value="bags">Bolsas</option>
+                    <option value="watches">Relógios</option>
+                    <option value="pants">Calças</option>
+                  </select>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleSave}
+                      className="p-2 text-white bg-green-600 rounded hover:bg-green-700"
+                    > 
+                      <Save size={20} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingId(null);
+                        setEditForm({});
+                      }}
+                      className="p-2 text-white bg-gray-600 rounded hover:bg-gray-700"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default ProductManager;
