@@ -26,3 +26,36 @@ export const Orders = () => {
               </th>
             </tr>
           </thead>
+          
+          <tbody className="divide-y divide-gray-200">
+            {orders.map((order) => (
+              <tr key={order.id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {order.customerName}
+                </td>
+                <td className="px-6 py-4">
+                  {order.products.map((product, index) => (
+                    <div key={index} className="text-sm">
+                      {product.name} (x{product.quantity})
+                    </div>
+                  ))}
+                </td>
+                <td className="px-6 py-4">
+                  {order.address}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  R$ {order.total.toFixed(2)}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {new Date(order.date).toLocaleDateString('pt-BR')}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default Orders
