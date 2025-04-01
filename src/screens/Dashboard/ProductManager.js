@@ -56,3 +56,30 @@ export const ProductManager = () => {
       alert('Erro ao salvar produto');
     }
   };
+  const handleDelete = async (id) => {
+    if (window.confirm('Tem certeza que deseja excluir este produto?')) {
+      try {
+        const response = await api.delete(`/produto/produtos/${id}`);
+        if (response.status === 200) {
+          setProducts(products.filter(p => p.id !== id));
+          alert('Produto excluído com sucesso');
+        }
+      } catch (error) {
+        console.error('Falha ao excluir produto:', error);
+        alert('Erro ao excluir produto');
+      }
+    }
+  };
+
+  const handleAdd = () => {
+    const newProduct = {
+      nome: 'Novo Produto',
+      preco: 0,
+      categoria: 'clothes',
+      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500',
+      descricao: 'Descrição do produto',
+      qtd_estoque: 0
+    };
+    setEditForm(newProduct);
+    setEditingId('new'); // Usamos 'new' para identificar que é um novo produto
+  };
