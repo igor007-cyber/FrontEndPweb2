@@ -18,3 +18,25 @@ const ProductCard = ({ product, onAddToCart }) => {
             {product.qtd_estoque === 0 ? 'Fora de estoque' : `${product.qtd_estoque} unidades em estoque`}
           </span>
         </div>
+        
+        <div className="mt-4 flex justify-between items-center">
+          <span className="text-xl font-bold whitespace-nowrap px-2">R$ {product.preco.toFixed(2)}</span>
+          <button
+            onClick={() => onAddToCart(product)}
+            disabled={product.qtd_estoque === 0}
+            className={`rounded-full flex items-center gap-2 transition-colors justify-center ${
+              product.qtd_estoque === 0
+                ? 'bg-gray-300 cursor-not-allowed text-gray-500'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            <ShoppingCart size={20} />
+            {product.qtd_estoque === 0 ? 'Indisponível' : 'Adicionar'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;
