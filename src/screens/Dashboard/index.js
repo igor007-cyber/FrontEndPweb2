@@ -59,4 +59,4 @@ export const Dashboard = ({ setAuthenticated }) => {
   );
 };
 
-export default Dashboard
+export default Dashboard;
