@@ -83,3 +83,32 @@ export const ProductManager = () => {
     setEditForm(newProduct);
     setEditingId('new'); // Usamos 'new' para identificar que é um novo produto
   };
+   
+  const handleFileUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      Papa.parse(file, {
+        header: true,
+        complete: async (results) => {
+          try {
+            // Envia cada produto para o backend
+            for (const row of results.data) {
+              await api.post('/produto/cadastrar', {
+                nome: row.nome,
+                preco: parseFloat(row.preco),
+                categoria: row.categoria,
+                image: row.image,
+                descricao: row.descricao,
+                qtd_estoque: parseInt(row.qtd_estoque, 10)
+              });
+            }
+            // Recarrega a lista após importação
+            await listarProdutos();
+          } catch (error) {
+            console.error('Erro ao importar produtos:', error);
+            alert('Erro ao importar alguns produtos');
+          }
+        }
+      });
+    }
+  };
