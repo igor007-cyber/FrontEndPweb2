@@ -30,3 +30,41 @@ function Home({ setAuthenticated, isAuthenticated }) {
         setAuthenticated(false);
         navigate('/');
     };
+    return (
+        <div className="m-0 p-0 font-sans bg-white">
+            {/* Header */}
+            <header className="flex justify-between items-center w-full h-[90px] bg-black px-5 border-b border-white">
+                {/* Logo */}
+                <div className="flex items-center h-full">
+                    <img className="h-full w-auto" src={logo} alt="Logo Caio Sports"/>
+                </div>
+
+                {/* Menu */}
+                <nav className="flex-1 flex justify-center items-center">
+                    <ul className="flex gap-5 m-0 p-0 list-none">
+                        <li><Link to="/" className="text-white no-underline text-base font-bold hover:text-green-300">Home</Link></li>
+                        <li><Link to="/produto" className="text-white no-underline text-base font-bold hover:text-green-300">Produto</Link></li>
+                        {!isAuthenticated && (
+                            <li><Link to="/cadastro" className="text-white no-underline text-base font-bold hover:text-green-300">Cadastrar</Link></li>
+                        )}                    </ul>
+                </nav>
+
+                {/* Login/Logout */}
+                <div className="flex items-center gap-2 mr-5">
+                    {isAuthenticated ? (
+                        <>
+                            <span className="text-white text-base font-bold">{user}</span>
+                            <button 
+                                onClick={handleLogout}
+                                className="text-white text-base font-bold hover:text-red-300"
+                            >
+                                Sair
+                            </button>
+                        </>
+                    ) : (
+                        <Link to="/login" className="text-white text-base font-bold no-underline hover:text-green-300">
+                            Login
+                        </Link>
+                    )}
+                </div>
+            </header>
