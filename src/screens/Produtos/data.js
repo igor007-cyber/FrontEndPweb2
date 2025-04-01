@@ -1,3 +1,15 @@
+export class Produtos {
+  constructor(data) {
+    this.id = data.id;
+    this.nome = data.nome;
+    this.preco = data.preco;
+    this.categoria = data.categoria;
+    this.descricao = data.descricao;
+    this.qtd_estoque = data.qtd_estoque;
+  }
+}
+
+
 export const products = [
     {
       id: 1,
