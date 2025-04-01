@@ -32,3 +32,35 @@ function Produto({ setAuthenticated, isAuthenticated}) {
       navigate('/');
   };
 
+  const categories = ['all', 'clothes', 'accessories', 'shoes', 'hats', 'bags', 'watches', 'pants'];
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    listarProdutos().then((response) => {
+      setProducts(response.produtos);
+    }) 
+  },[                           ])
+
+  const filteredProducts = selectedCategory === 'all'
+    ? products
+    : products.filter(product => product.category === selectedCategory);
+
+  const addToCart = (product) => {
+    if (product.stock === 0) return;
+
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === product.id);
+      if (existingItem) {
+        if (existingItem.quantity >= product.stock) {
+          alert('Desculpe, não há mais unidades disponíveis deste produto.');
+          return prevItems;
+        }
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+
