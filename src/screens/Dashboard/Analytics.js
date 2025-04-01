@@ -29,9 +29,9 @@ export const Analytics = () => {
             <button
               key={p}
               onClick={() => setPeriod(p)}
-              className={`px-4 py-2 rounded-lg ${
+              className={`px-4 py-2 rounded-lg hover:bg-green-600 ${
                 period === p
-                  ? 'bg-blue-600 text-white'
+                  ? 'text-white bg-green-600'
                   : 'bg-blue-600 hover:bg-gray-200'
               }`}
             >
@@ -43,27 +43,3 @@ export const Analytics = () => {
           ))}
         </div>
       </div>
-
-      <div className="bg-white p-6 rounded-lg shadow-lg" style={{ height: '400px' }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={getData()}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="sales"
-              stroke="#2563eb"
-              strokeWidth={2}
-              dot={{ r: 4 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
-  );
-};
-
-export default Analytics
