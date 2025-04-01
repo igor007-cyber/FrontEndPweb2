@@ -55,3 +55,52 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
                           onClick={() => onUpdateQuantity(item.id, item.qtd_estoque, Math.max(0, item.quantity - 1))}
                           className="px-2 py-1 bg-blue-600 rounded"
                         >
+                                -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          onClick={() => 
+                            onUpdateQuantity(item.id, item.qtd_estoque, item.quantity + 1)}
+                          className="px-2 py-1 bg-blue-600 rounded"
+                          disabled={product && item.quantity >= product.qtd_estoque}
+                        >
+                          +
+                        </button>
+                      </div>
+                      {product && (
+                        <p className="text-sm text-gray-500 mt-1">
+                          Disponível: {item.qtd_estoque}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => onRemoveFromCart(item.id)}
+                      className="text-black bg-white hover:text-red-700 justify-items-center"
+                    >
+                      <X size={20}/>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            
+            <div className="mt-4">
+              <div className="flex justify-between text-xl font-bold mb-4">
+                <span>Total:</span>
+                <span>R$ {total.toFixed(2)}</span>
+              </div>
+              <button
+                onClick={handleCheckout}
+                className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Finalizar Compra
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Cart;
