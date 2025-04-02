@@ -26,7 +26,6 @@ export const Orders = () => {
               </th>
             </tr>
           </thead>
-          
           <tbody className="divide-y divide-gray-200">
             {orders.map((order) => (
               <tr key={order.id}>

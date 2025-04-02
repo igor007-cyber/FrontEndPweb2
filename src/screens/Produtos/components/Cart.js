@@ -55,7 +55,7 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
                           onClick={() => onUpdateQuantity(item.id, item.qtd_estoque, Math.max(0, item.quantity - 1))}
                           className="px-2 py-1 bg-blue-600 rounded"
                         >
-                                -
+                          -
                         </button>
                         <span>{item.quantity}</span>
                         <button

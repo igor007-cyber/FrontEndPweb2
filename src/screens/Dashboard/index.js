@@ -21,7 +21,7 @@ export const Dashboard = ({ setAuthenticated }) => {
     { id: 'products', label: 'Produtos', icon: Package },
     { id: 'logout', label: 'Sair', icon: LogOut, action: handleLogout }
   ];
-  
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="flex">

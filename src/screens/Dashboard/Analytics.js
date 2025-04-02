@@ -44,8 +44,6 @@ export const Analytics = () => {
         </div>
       </div>
 
-
-
       <div className="bg-white p-6 rounded-lg shadow-lg" style={{ height: '400px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={getData()}>

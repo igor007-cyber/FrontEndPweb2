@@ -18,7 +18,6 @@ const ProductCard = ({ product, onAddToCart }) => {
             {product.qtd_estoque === 0 ? 'Fora de estoque' : `${product.qtd_estoque} unidades em estoque`}
           </span>
         </div>
-        
         <div className="mt-4 flex justify-between items-center">
           <span className="text-xl font-bold whitespace-nowrap px-2">R$ {product.preco.toFixed(2)}</span>
           <button

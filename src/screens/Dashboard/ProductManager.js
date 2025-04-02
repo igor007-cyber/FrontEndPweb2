@@ -56,6 +56,7 @@ export const ProductManager = () => {
       alert('Erro ao salvar produto');
     }
   };
+
   const handleDelete = async (id) => {
     if (window.confirm('Tem certeza que deseja excluir este produto?')) {
       try {
@@ -83,7 +84,7 @@ export const ProductManager = () => {
     setEditForm(newProduct);
     setEditingId('new'); // Usamos 'new' para identificar que é um novo produto
   };
-   
+
   const handleFileUpload = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -112,6 +113,7 @@ export const ProductManager = () => {
       });
     }
   };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
@@ -140,6 +142,7 @@ export const ProductManager = () => {
           </button>
         </div>
       </div>
+
       <div className="overflow-x-auto rounded-s-lg">
         <table className="min-w-full bg-white rounded-lg shadow-lg">
           <thead className="bg-blue-600">
@@ -248,13 +251,6 @@ export const ProductManager = () => {
                         />
                         {product.nome}
                       </div>
-
-                      
-
- 
-
-
- 
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                       {product.descricao || 'Sem descrição'}

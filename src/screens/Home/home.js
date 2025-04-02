@@ -30,6 +30,7 @@ function Home({ setAuthenticated, isAuthenticated }) {
         setAuthenticated(false);
         navigate('/');
     };
+
     return (
         <div className="m-0 p-0 font-sans bg-white">
             {/* Header */}
@@ -68,8 +69,9 @@ function Home({ setAuthenticated, isAuthenticated }) {
                     )}
                 </div>
             </header>
-              {/* Main Content */}
-              <main className="flex flex-col items-center justify-center text-center gap-5 w-full h-full bg-white">
+
+            {/* Main Content */}
+            <main className="flex flex-col items-center justify-center text-center gap-5 w-full h-full bg-white">
                 {/* Video Section */}
                 <div className="flex flex-col items-center gap-4 w-full bg-white text-center">
                     <div className="relative w-full h-[calc(100vh-40px)] bg-black flex justify-center items-center overflow-hidden mb-5">
@@ -114,8 +116,9 @@ function Home({ setAuthenticated, isAuthenticated }) {
                         />
                     </a>
                 </div>
-                  {/* Purchase Section */}
-                  <div className="flex items-center justify-center gap-5 my-5 bg-white">
+
+                {/* Purchase Section */}
+                <div className="flex items-center justify-center gap-5 my-5 bg-white">
                     <div className="flex-shrink-0">
                         <img src={pessoa} alt="Modelo de pessoa" className="w-[450px] h-auto" />
                     </div>
@@ -161,4 +164,3 @@ function Home({ setAuthenticated, isAuthenticated }) {
 }
 
 export default Home;
-
