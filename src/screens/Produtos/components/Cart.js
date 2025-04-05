@@ -1,28 +1,58 @@
 import React, { useEffect } from 'react';
 import { X, ShoppingBag } from 'lucide-react';
 import { products } from '../data';
+import { pedidos } from '../../../api/pedido';
+import { MandarPedido } from '../../../api/pedidohasproduto';
 
-const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) => {
+const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen, cliente }) => {
   const total = items.reduce((sum, item) => sum + item.preco * item.quantity, 0);
 
   useEffect(() => {
     console.log('itens', items);
   }, [items]);
 
-  const handleCheckout = () => {  
+  const handleCheckout = async () => {
     const invalidItems = items.filter(item => {
-      const product = products.find(p => p.id === item.id);
-      return product && item.quantity > product.qtd_estoque;
+        const product = products.find(p => p.id === item.id);
+        return product && item.quantity > product.qtd_estoque;
     });
 
     if (invalidItems.length > 0) {
-      alert('Alguns itens não estão mais disponíveis na quantidade selecionada. Por favor, revise seu carrinho.');
-      return;
+        alert('Alguns itens não estão mais disponíveis na quantidade selecionada. Por favor, revise seu carrinho.');
+        return;
     }
 
-    alert('Compra finalizada! Total: R$ ' + total.toFixed(2));
-    onClose();
-  };
+    try {
+        // 🛒 Primeiro, cria o pedido
+        const novoPedido = await pedidos(
+            new Date().toISOString().split('T')[0], // data_pedido
+            true, // status (ajuste se necessário)
+            total, // valor_total
+            new Date().toISOString().split('T')[0], // data_envio
+            new Date().toISOString().split('T')[0], // data_status
+            1, // idCliente (ajuste conforme sua lógica)
+            "Pedido realizado pelo sistema" // descricao
+        );
+
+        // ⚡ Ajuste aqui: confirmar se vem `novoPedido.idPedido`
+        const idPedido = novoPedido.idPedido; 
+        console.log("Pedido criado com sucesso, ID:", idPedido);
+
+        // 🛒 Depois, adiciona os produtos ao pedido
+        for (const item of items) {
+            console.log(`Adicionando produto: ${item.nome}, ID: ${item.id}, Quantidade: ${item.quantity}, Preço: ${item.preco}`);
+            await MandarPedido(idPedido, item.id, item.quantity, item.preco);
+        }
+
+        alert(`Compra finalizada! Total: R$ ${total.toFixed(2)}`);
+        onClose();
+    } catch (error) {
+        console.error("Erro ao finalizar a compra:", error);
+        alert("Erro ao finalizar a compra. Tente novamente mais tarde.");
+    }
+};
+
+
 
   return (
     <div className={`fixed right-0 top-0 h-full w-96 bg-white shadow-lg transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
@@ -46,7 +76,7 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
                 const product = products.find(p => p.id === item.id);
                 return (
                   <div key={item.id} className="flex items-center gap-4 border-b pb-4">
-                   <img alt={item.nome} className="w-20 h-20 object-cover rounded" />  {/* src={item.image}  */}
+                   <img src={item.image} alt={item.nome} className="w-20 h-20 object-cover rounded" />
                     <div className="flex-1">
                       <h3 className="font-semibold whitespace-nowrap">{item.nome}</h3>
                       <p className="text-gray-600">R$ {item.preco.toFixed(2)}</p>
