@@ -211,13 +211,13 @@ export const ProductManager = () => {
                         onChange={(e) => setEditForm({ ...editForm, categoria: e.target.value })}
                         className="w-full p-2 border rounded"
                       >
-                        <option value="clothes">Roupas</option>
-                        <option value="accessories">Acessórios</option>
-                        <option value="shoes">Sapatos</option>
-                        <option value="hats">Chapéus</option>
-                        <option value="bags">Bolsas</option>
-                        <option value="watches">Relógios</option>
-                        <option value="pants">Calças</option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Acessorios">Acessórios</option>
+                        <option value="Sapatos">Sapatos</option>
+                        <option value="Chapeus">Chapéus</option>
+                        <option value="Bolsas">Bolsas</option>
+                        <option value="Relogios">Relógios</option>
+                        <option value="Calcas">Calças</option>
                       </select>
                     </td>
                     <td className="px-6 py-4">

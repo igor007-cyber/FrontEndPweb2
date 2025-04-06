@@ -1,18 +1,14 @@
 import api from "./api"
 //import {jwtDecode} from "jwt-decode";
 
-export const MandarPedido = async (idPedido, idProduto, quantidade, preco) => {
-    try {
-        const response = await api.post(`/compra/pedidos/${idPedido}/produtos`, {
-            idProduto,
-            quantidade,
-            preco
-        });
-        console.log("Produto adicionado ao pedido:", response.data);
+export const MandarPedido = async (idPedido, idProduto, quantidade, preco_unitario) => {
+    try{
+        const response = await api.post('/compra/pedidos/:idPedido/produtos', {idPedido, idProduto, quantidade, preco_unitario});
+        console.log(response.data);
         return response.data;
-    } catch (error) {
-        console.error("Erro no cadastro de produto:", error);
-        throw new Error('Falha ao adicionar produto ao pedido');
+    }catch(error){
+        console.error("Erro no cadastro:", error);
+        throw new Error('Falha no cadastro');
     }
 }
 
@@ -27,7 +23,7 @@ export const buscarPedidoComProdutos = async (idPedido) => {
 
         // 2. Busca os produtos do pedido
         const produtosResponse = await api.get(`/compra/pedidos/${idPedido}/produtos`);
-        const { message: msgProdutos, produtos } = produtosResponse.data;
+        const { produtos } = produtosResponse.data;
         console.log('[3] Produtos do pedido:', produtos);
 
         // 3. Estrutura a resposta final

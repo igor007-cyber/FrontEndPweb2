@@ -90,7 +90,7 @@ export const Orders = () => {
                   R$ {pedido.valor_total?.toFixed(2) || '0.00'}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {pedido.data_pedido && new Date(pedido.data_pedido).toLocaleDateString('pt-BR', {
+                {pedido.data_pedido && new Date(pedido.data_pedido).toLocaleDateString('pt-BR', {
                     timeZone: 'UTC',
                   })}
                 </td>
