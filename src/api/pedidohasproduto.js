@@ -3,7 +3,7 @@ import api from "./api"
 
 export const MandarPedido = async (idPedido, idProduto, quantidade, preco_unitario) => {
     try{
-        const response = await api.post('/compra/pedidos/:idPedido/produtos', {idPedido, idProduto, quantidade, preco_unitario});
+        const response = await api.post(`/compra/pedidos/${idPedido}/produtos`, { idPedido, idProduto, quantidade, preco_unitario });
         console.log(response.data);
         return response.data;
     }catch(error){

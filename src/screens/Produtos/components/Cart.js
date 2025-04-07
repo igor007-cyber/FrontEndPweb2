@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { X, ShoppingBag } from 'lucide-react';
 import { products } from '../data';
 import { pedidos } from '../../../api/pedido';
 import { MandarPedido } from '../../../api/pedidohasproduto';
 
 const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) => {
-  const [clienteId, setClienteId] = useState(null);
-
   const total = items.reduce((sum, item) => sum + item.preco * item.quantity, 0);
 
   useEffect(() => {
-    // PEGAR O ID DO LOCALSTORAGE
-    const storedId = localStorage.getItem('id');
-    if (storedId) {
-      setClienteId(Number(storedId)); // transforma em número
-      console.log('Cliente logado, ID:', storedId);
-    } else {
-      console.warn('Nenhum cliente logado encontrado no localStorage.');
-    }
-  }, []);
+    console.log('Itens no carrinho:', items);
+  }, [items]);
 
   const handleCheckout = async () => {
-    if (!clienteId) {
-      alert("Cliente não logado. Por favor, faça login antes de finalizar a compra.");
+    const cliente = JSON.parse(localStorage.getItem('cliente'));
+    console.log(cliente.id)
+    if (!cliente) {
+      console.log("teste cliente");
       return;
     }
-
     const invalidItems = items.filter(item => {
       const product = products.find(p => p.id === item.id);
       return product && item.quantity > product.qtd_estoque;
@@ -37,15 +29,12 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
     }
 
     try {
-      const hoje = new Date().toISOString().split('T')[0];
-
-      // CRIAR O PEDIDO
       const novoPedido = await pedidos(
-        hoje,
+        new Date().toISOString().split('T')[0],
         true,
         total,
-        hoje,
-        clienteId, // <- Sempre usa o clienteId correto aqui
+        new Date().toISOString().split('T')[0],
+        cliente?.id || 1,
         "Pedido realizado pelo sistema"
       );
 
@@ -56,11 +45,10 @@ const Cart = ({ items, onRemoveFromCart, onUpdateQuantity, onClose, isOpen }) =>
 
       console.log("Pedido criado com sucesso, ID:", idPedido);
 
-      // MANDAR OS PRODUTOS DO CARRINHO
       for (const item of items) {
         const precoUnitario = item.preco;
         await MandarPedido(idPedido, item.id, item.quantity, precoUnitario);
-        console.log(`Produto ${item.nome} adicionado ao pedido.`);
+        console.log(`Produto ${item.nome} adicionado ao pedido com valor total: R$ ${precoUnitario.toFixed(2)}`);
       }
 
       alert(`Compra finalizada! Total: R$ ${total.toFixed(2)}`);
